@@ -1,13 +1,13 @@
 ---
-import { readAll } from "../lib/markdoc/read";
-import { blog } from "../lib/markdoc/frontmatter.schema";
-import PageLayout from "../layouts/PageLayout.astro";
 import PageMeta from "../components/PageMeta.astro";
 import ExternalLinkIcon from "../components/ui/icons/external-link.astro";
 import { SITE_TITLE } from "../config";
+import PageLayout from "../layouts/PageLayout.astro";
+import { blog } from "../lib/markdoc/frontmatter.schema";
+import { readAll } from "../lib/markdoc/read";
 
 const posts = await readAll({
-  directory: "stuffs",
+  directory: "notes",
   frontmatterSchema: blog,
 });
 
@@ -21,7 +21,7 @@ const sortedPosts = posts
 ---
 
 <PageLayout>
-  <PageMeta title={`Stuffs | ${SITE_TITLE}`} slot="meta" />
+  <PageMeta title={`notes | ${SITE_TITLE}`} slot="meta" />
   <section slot="main">
     <ul>
       {
@@ -47,7 +47,7 @@ const sortedPosts = posts
                     />
                   </a>
                 ) : (
-                  <a href={`/stuffs/${post.slug}`}>{post.frontmatter.title}</a>
+                  <a href={`/notes/${post.slug}`}>{post.frontmatter.title}</a>
                 )}
               </div>
               <div class="publish-date">
